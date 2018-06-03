@@ -1,0 +1,159 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                                <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <img style="width: 50%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/600px-Bitcoin.svg.png">
+                                    <!--<i class="ti-server"></i>-->
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Bitcoin</p>
+                                    {{btcValue}} USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> Updated now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-success text-center">
+                                    <img style="width: 50%" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png">
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Ethereum</p>
+                                    {{ethValue}} USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> Updated now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-danger text-center">
+                                    <img style="width: 50%" src="https://blockogy.com/wp-content/uploads/2018/01/litecoin.png">
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>LiteCoin</p>
+                                    {{ltcValue}} USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-reload"></i> Updated now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="header">
+
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="inline">Monthly</h3>
+                                    <label class="switch inline" >
+                                        <input class="inline" type="checkbox" data-toggle="collapse" data-target="#demo" [(ngModel)]="isMonthly" (click)="test()">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <h3 class="inline">Weekly</h3>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div id="demo" class="collapse">
+                                            <button type="button" class="btn btn-success" (click)="lastWeek()">Previuos week</button>
+                                            <button type="button" class="btn btn-success" (click)="nextWeek()">Next week</button>
+                                            <button type="button" class="btn btn-success" (click)="toggleTrend()">Toggle trend line</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="header">
+                            <h1>Chart</h1>
+                        </div>
+                        <div class="content">
+                            <div *ngIf="chart">
+                                <canvas id="canvas">{{ chart }}</canvas>
+                            </div>
+                            <div class="footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6" *ngFor="let item of data.messages">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="icon-big icon-success text-center">
+                                        <img *ngIf="item.trend === false" style="width: 50%" src="../../assets/img/arrowdownred.svg">
+                                        <img *ngIf="item.trend === true" style="width: 50%" src="../../assets/img/arrowupgreen.svg">
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="numbers">
+                                        {{item.content.slice(0,3)}}
+                                    </div>
+                                    {{item.content}} ({{originalData.labels[item.sample]}})
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-reload"></i> Updated now
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
